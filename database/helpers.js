@@ -1,6 +1,6 @@
-const db = require('./database_init');
+const db = require('./server.ts');
 
-let helpers = {
+const modelHelpers = {
     getAll: (callback) => {
         let queryString = 'SELECT * FROM choices;'
         db.query(queryString, (err, results) => {
@@ -42,6 +42,7 @@ let helpers = {
             }
         })
     }
-}
+};
 
-module.exports = helpers
+
+module.exports = modelHelpers;

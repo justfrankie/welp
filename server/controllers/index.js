@@ -1,4 +1,4 @@
-const modelHelpers = require("../database/helpers.js");
+const modelHelpers = require("../../database/helpers.js");
 
 const controllers = {
     getAll: (req, res) => {
@@ -38,4 +38,4 @@ const controllers = {
    }
 }
 
-module.exports  = controllers
+module.exports = controllers;
