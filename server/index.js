@@ -2,7 +2,7 @@ const dotenv = require('dotenv').config();
 const express = require('express');
 const app = express();
 const path = require('path');
-const router = require('./router.js');
+const router = require('./routes');
 const bodyParser = require('body-parser');
 
 const port = process.env.PORT || 3000;
@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 
-app.use('/', express.static(path.join(__dirname, '/../client/public')))
+app.use('/', express.static(path.join(__dirname, './client/public')))
 app.use('/api', router)
 
 

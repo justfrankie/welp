@@ -1,4 +1,4 @@
-const modelHelpers = require("../../database/helpers.js");
+const modelHelpers = require("../../database/helpers");
 
 const controllers = {
     getAll: (req, res) => {
@@ -28,7 +28,7 @@ const controllers = {
             }
         })
     },
-    deleteOne: (req, res) => { // this is where we need req.params!!!!
+    deleteOne: (req, res) => {
         modelHelpers.deleteOne( req.params.id, (err, results) => {
             if (err) {
                 res.status(404).send(err);
