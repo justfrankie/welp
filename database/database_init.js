@@ -8,7 +8,7 @@ let connection = mysql.createConnection({
 })
 
 
-connection.connect();
+// connection.connect();
 
 
 module.exports = connection;

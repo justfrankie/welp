@@ -4,7 +4,7 @@ CREATE DATABASE welp;
 
 USE welp;
 
-CREATE table choices (
+CREATE table Restaurants (
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     restaurant VARCHAR(255)
 );
