@@ -2,15 +2,15 @@ import React from 'react';
 import Axios from 'axios';
 import List from './List.jsx'
 
-class App extends React.Component {
-    constructor(props){
+class App extends React.Component { // TODO: convert to functional component
+    constructor(props){ // TODO: use react hooks for state management
     super(props);
     this.state = {
         displayChoice: false,
         restaurants: [],
         restaurant: ''
     }
-    this.getDataFromDatabase =   this.getDataFromDatabase.bind(this)
+    this.getDataFromDatabase =   this.getDataFromDatabase.bind(this) 
     this.handleAddClick = this.handleAddClick.bind(this)
     this.handleRandom = this.handleRandom.bind(this)
   }
@@ -19,7 +19,7 @@ class App extends React.Component {
       this.getDataFromDatabase();
   }
 
-  getDataFromDatabase(){
+  getDataFromDatabase(){ // TODO rename better method name
       Axios.get('/api/all')
       .then((results) => {
           this.setState({
@@ -37,7 +37,7 @@ class App extends React.Component {
     })
   }
 
-  handleAddClick(){
+  handleAddClick(){  // TODO rename better method name
       if (this.state.restaurant.length < 1){
           window.alert('Please enter at least one character.')
       } else {
@@ -66,7 +66,7 @@ class App extends React.Component {
 
   handleDeleteOne(id){
     Axios.delete(`/api/deleteOne/${id}`) // utilizing req.params
-    .then(() =>  this.getDataFromDatabase()) // calls a get request after each successful delete
+    .then(() =>  this.getDataFromDatabase()) 
     .catch(err => console.error(err))
   }
 

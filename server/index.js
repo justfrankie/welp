@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 
 app.use('/', express.static(path.join(__dirname, '/../client/public')))
-app.use('/api', router)
+app.use('/api', router) // TODO: convert api to its own service
 
 
 app.listen(port, () => console.log(`Successfully connected to Welp! on http://localhost:${port}`)) 

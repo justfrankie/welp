@@ -4,7 +4,7 @@ const modelHelpers = {
     getAll: (callback) => {
         let queryString = 'SELECT * FROM Restaurants;'
         db.query(queryString, (err, results) => {
-            if (err){
+            if (err){ // TODO: use async await instead of error callbacks
                 callback(err)
             } else {
                 callback(null, results)

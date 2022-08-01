@@ -1,9 +1,9 @@
 const modelHelpers = require("../../database/controllers/models");
 
-const controllers = {
+const controllers = { // TODO: write unit tests for each path 
     getAll: (req, res) => {
         modelHelpers.getAll((err, data) => {
-            if (err){
+            if (err){ // refractor error handling to use try/catch
                 res.status(404).send(err);
             } else {
                 res.status(200).send(data);
