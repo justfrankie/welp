@@ -1,4 +1,4 @@
-const modelHelpers = require("../../database/helpers");
+const modelHelpers = require("../../database/controllers/models");
 
 const controllers = {
     getAll: (req, res) => {
@@ -10,12 +10,12 @@ const controllers = {
             }
         })
     }, 
-    addOne: (req, res) => {
-        modelHelpers.addOne(req.body, (err, results) => {
+    create: (req, res) => {
+        modelHelpers.create(req.body, (err, results) => {
             if (err){
                 res.status(404).send(err);
             } else {
-                res.status(200).send(`${req.body.restaurant} posted into the database`);
+                res.status(200).send(`Added ${req.body.restaurant} into Restaurants table.`);
             }
         })
     },
@@ -29,7 +29,7 @@ const controllers = {
         })
     },
     deleteOne: (req, res) => {
-        modelHelpers.deleteOne( req.params.id, (err, results) => {
+        modelHelpers.deleteOne(req.params.id, (err, results) => {
             if (err) {
                 res.status(404).send(err);
             } 

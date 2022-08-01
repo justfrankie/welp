@@ -5,7 +5,7 @@
   "main": "server/index.js",
   "scripts": {
     "start": "nodemon",
-    "init-database": "mysql -u root < schema.sql",
+    "init-database": "mysql -u root -p < schema.sql",
     "build": "webpack -w",
     "dev": "nodemon ./server/index.js",
     "lint": "eslint --ext .js",

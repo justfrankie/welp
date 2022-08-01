@@ -1,7 +1,5 @@
-const express = require('express');
 const controllers = require('./controllers/index');
-
-const router = express.Router();
+const router = require('express').Router();
 
 router
 .route('/all')
@@ -9,8 +7,8 @@ router
 .delete(controllers.deleteAll)
 
 router
-.route('/add')
-.post(controllers.addOne)
+.route('/create')
+.post(controllers.create)
 
 router
 .route('/deleteOne/:id')

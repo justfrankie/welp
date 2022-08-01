@@ -7,7 +7,7 @@ class App extends React.Component {
     super(props);
     this.state = {
         displayChoice: false,
-        choices: [],
+        restaurants: [],
         restaurant: ''
     }
     this.getDataFromDatabase =   this.getDataFromDatabase.bind(this)
@@ -23,8 +23,8 @@ class App extends React.Component {
       Axios.get('/api/all')
       .then((results) => {
           this.setState({
-              choices: results.data
-          }, () => console.log(this.state))
+              restaurants: results.data
+          })
       })
       .catch((err) => { console.error(err)})
   }
@@ -42,7 +42,7 @@ class App extends React.Component {
           window.alert('Please enter at least one character.')
       } else {
         let { restaurant } = this.state;
-        Axios.post("/api/add", {
+        Axios.post("/api/create", {
           restaurant: restaurant,
         })
           .then(() => this.setState({ restaurant: "" })) // sets state back to blank to force re-render
@@ -79,12 +79,12 @@ class App extends React.Component {
                         <button onClick={this.handleAddClick.bind(this)} id="addButton">Add</button>
                         <button onClick={this.handleClearClick.bind(this)} id="clearButton">Clear</button>
                         <div id="choiceText">Your choice is: </div>
-                        <h1 style={{"color":"rgb(83 177 89)"}}>{this.state.choices[Math.floor(Math.random() * this.state.choices.length)].restaurant}</h1>
+                        <h1 style={{"color":"rgb(83 177 89)"}}>{this.state.restaurants[Math.floor(Math.random() * this.state.restaurants.length)].restaurant}</h1>
                         <button onClick={(e) => this.handleRandom(e)} id="randomButton">Go!</button>
                     </form>
                 </div>
             )
-        } else if (!this.state.choices.length){
+        } else if (!this.state.restaurants.length){
             return (
                 <div>
                     <form>
@@ -103,7 +103,7 @@ class App extends React.Component {
                         <input placeholder="Restaurant" name="restaurant" onChange={this.handleChange.bind(this)} className="inputBar"></input>
                         <button onClick={this.handleAddClick.bind(this)} id="addButton">Add</button>
                         <button onClick={this.handleClearClick.bind(this)} id="clearButton">Clear</button>
-                         <List choices={this.state.choices} handleDeleteOne={this.handleDeleteOne.bind(this)} />
+                         <List restaurants={this.state.restaurants} handleDeleteOne={this.handleDeleteOne.bind(this)} />
                         <button onClick={(e) => this.handleRandom(e) } id="randomButton">Go!</button>
                     </form>
                 </div>

@@ -8,8 +8,9 @@ const connection = mysql.createConnection({
     database,
 })
 
-
-// connection.connect(); // TODO: implement backend database when ready
-
+connection.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+  });
 
 module.exports = connection;
