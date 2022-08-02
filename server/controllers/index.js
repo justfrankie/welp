@@ -3,39 +3,51 @@ const modelHelpers = require("../../database/controllers/models");
 const controllers = { // TODO: write unit tests for each path 
     getAll: (req, res) => {
         modelHelpers.getAll((err, data) => {
-            if (err){ // refractor error handling to use try/catch
-                res.status(404).send(err);
+            if (err){ 
+                res.status(err.status).send(err.message);
             } else {
                 res.status(200).send(data);
             }
         })
     }, 
-    create: (req, res) => {
-        modelHelpers.create(req.body, (err, results) => {
+    create: async (req, res) => {
+       await modelHelpers.create(req.body, (err, results) => {
             if (err){
-                res.status(404).send(err);
+                res.status(err.status).send(err.message);
             } else {
-                res.status(200).send(`Added ${req.body.restaurant} into Restaurants table.`);
+                res.status(200).send({});
             }
         })
     },
-    deleteAll: (req, res) => {
-        modelHelpers.deleteAll((err, results) => {
+    deleteAll: async (req, res) => {
+       await modelHelpers.deleteAll((err, results) => {
             if (err){
-                res.status(404).send(err);
+                res.status(err.status).send(err.message);
             } else {
-                res.status(200).send('succesfully truncated table.');
+                res.status(200).send({});
             }
         })
     },
-    deleteOne: (req, res) => {
-        modelHelpers.deleteOne(req.params.id, (err, results) => {
+    deleteOne: async (req, res) => {
+        await modelHelpers.deleteOne(req.params.id, (err, results) => {
             if (err) {
-                res.status(404).send(err);
+                res.status(err.status).send(err.message);
             } 
-            res.status(200).send(results)
+            res.status(200).send({})
         })
-   }
+   },
+   update: async (req, res) => {
+        if (Number.isNaN(req.params.id) || !req.body.restaurant) {
+            res.status(400).send("Invalid arguments provided") 
+        } else {
+            await modelHelpers.update(req.params.id, req.body.restaurant, (err, results) => {
+                if (err) {
+                    res.status(err.status).send(err.message)
+                } 
+                res.status(200).send({})
+            })
+        } 
+}
 }
 
 module.exports = controllers;
