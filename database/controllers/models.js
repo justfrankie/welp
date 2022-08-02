@@ -1,55 +1,40 @@
 const db = require('../server.ts');
 
 const modelHelpers = {
-    getAll: (callback) => {
+    getAll: async (callback) => {
         const queryString = 'SELECT * FROM Restaurants;'
-        db.query(queryString, (err, results) => {
-            if (err){ // TODO: use async await instead of error callbacks
-                callback(err)
-            } else {
-                callback(null, results)
-            }
+        await db.query(queryString, (err, result) => {
+            if (err) callback({status: 500, message: "Internal Server Error"});
+            callback(null, result)
         })
     },
-    create: (body, callback) => {
+    create: async (body, callback) => {
             const queryString = `INSERT INTO Restaurants(restaurant) VALUES(?);`
-            db.query(queryString, [body.restaurant], (err, results) => {
-                if (err){
-                    callback(err)
-                } else {
-                    callback(null, results)
-                }
+           await db.query(queryString, [body.restaurant], (err, result) => {
+                if (err) callback({status: 500, message: "Internal Server Error"});
+                callback(null, result)
             })
     },
-    deleteAll: (callback) => {
+    deleteAll: async (callback) => {
        const queryString = `TRUNCATE table Restaurants;`
-        db.query(queryString, (err, results) => {
-            if (err){
-                callback(err)
-            } else {
-                callback(null, results)
-            }
+        await db.query(queryString, (err, result) => {
+            if (err) callback({status: 500, message: "Internal Server Error"});
+            callback(null, result)
         })
     },
-    deleteOne: (id, callback) => {
+    deleteOne: async (id, callback) => {
         const queryString = `DELETE FROM Restaurants WHERE id=?;`
-        db.query(queryString, [id], (err, results) => {
-            if (err){
-                callback(err)
-            } else {
-                callback(null, results)
-            }
+        await db.query(queryString, [id], (err, result) => {
+            if (err) callback({status: 500, message: "Internal Server Error"});
+            callback(null, result)
         })
     },
-    update: (id, payload, callback) => {
-        try {
-            const queryString = `UPDATE Restaurants set restaurant= ? WHERE id =?;`
-            db.query(queryString, [payload, id], (err, results) => {
-            })
-            callback(null, results)
-        } catch (error) {
-            callback(err)
-        }
+    update: async (id, restaurant, callback) => {
+            const queryString = `UPDATE Restaurants SET restaurant=? WHERE id =?;`
+            await db.query(queryString, [restaurant, id], (err, result) => {
+                if (err) callback({status: 500, message: "Internal Server Error"});
+                callback(null, result)
+            });
     }
 };
 
