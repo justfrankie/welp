@@ -1,19 +1,18 @@
-const db = require('./database_init');
+const db = require('../server.ts');
 
-let helpers = {
+const modelHelpers = {
     getAll: (callback) => {
-        let queryString = 'SELECT * FROM choices;'
+        let queryString = 'SELECT * FROM Restaurants;'
         db.query(queryString, (err, results) => {
-            if (err){
+            if (err){ // TODO: use async await instead of error callbacks
                 callback(err)
             } else {
                 callback(null, results)
             }
         })
     },
-    addOne: (data, callback) => {
-        let {restaurant} = data
-            let queryString = `INSERT INTO choices(restaurant) VALUES('${restaurant}');`
+    create: (body, callback) => {
+            let queryString = `INSERT INTO Restaurants(restaurant) VALUES('${body.restaurant}');`
             db.query(queryString, (err, results) => {
                 if (err){
                     callback(err)
@@ -23,7 +22,7 @@ let helpers = {
             })
     },
     deleteAll: (callback) => {
-       let queryString = `TRUNCATE table choices;`
+       let queryString = `TRUNCATE table Restaurants;`
         db.query(queryString, (err, results) => {
             if (err){
                 callback(err)
@@ -33,7 +32,7 @@ let helpers = {
         })
     },
     deleteOne: (id, callback) => {
-        let queryString = `DELETE FROM choices WHERE id = ${id};` // we want to delete one item from the database with this provided id
+        let queryString = `DELETE FROM Restaurants WHERE id = ${id};` // we want to delete one item from the database with this provided id
         db.query(queryString, (err, results) => {
             if (err){
                 callback(err)
@@ -42,6 +41,7 @@ let helpers = {
             }
         })
     }
-}
+};
 
-module.exports = helpers
+
+module.exports = modelHelpers;

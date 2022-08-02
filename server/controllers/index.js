@@ -1,21 +1,21 @@
-const modelHelpers = require("../database/helpers.js");
+const modelHelpers = require("../../database/controllers/models");
 
-const controllers = {
+const controllers = { // TODO: write unit tests for each path 
     getAll: (req, res) => {
         modelHelpers.getAll((err, data) => {
-            if (err){
+            if (err){ // refractor error handling to use try/catch
                 res.status(404).send(err);
             } else {
                 res.status(200).send(data);
             }
         })
     }, 
-    addOne: (req, res) => {
-        modelHelpers.addOne(req.body, (err, results) => {
+    create: (req, res) => {
+        modelHelpers.create(req.body, (err, results) => {
             if (err){
                 res.status(404).send(err);
             } else {
-                res.status(200).send(`${req.body.restaurant} posted into the database`);
+                res.status(200).send(`Added ${req.body.restaurant} into Restaurants table.`);
             }
         })
     },
@@ -28,8 +28,8 @@ const controllers = {
             }
         })
     },
-    deleteOne: (req, res) => { // this is where we need req.params!!!!
-        modelHelpers.deleteOne( req.params.id, (err, results) => {
+    deleteOne: (req, res) => {
+        modelHelpers.deleteOne(req.params.id, (err, results) => {
             if (err) {
                 res.status(404).send(err);
             } 
@@ -38,4 +38,4 @@ const controllers = {
    }
 }
 
-module.exports  = controllers
+module.exports = controllers;

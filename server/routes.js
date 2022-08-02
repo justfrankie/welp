@@ -1,18 +1,17 @@
+const controllers = require('./controllers/index');
 const router = require('express').Router();
-const controllers = require('./controllers.js');
-
 
 router
-.route('/all')
+.route('/all') // TODO: refractor better api layers
 .get(controllers.getAll)
 .delete(controllers.deleteAll)
 
 router
-.route('/add')
-.post(controllers.addOne)
+.route('/create')
+.post(controllers.create)
 
 router
 .route('/deleteOne/:id')
 .delete(controllers.deleteOne)
 
-module.exports = router; 
+module.exports = router;
