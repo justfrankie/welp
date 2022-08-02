@@ -2,7 +2,7 @@ const db = require('../server.ts');
 
 const modelHelpers = {
     getAll: (callback) => {
-        let queryString = 'SELECT * FROM Restaurants;'
+        const queryString = 'SELECT * FROM Restaurants;'
         db.query(queryString, (err, results) => {
             if (err){ // TODO: use async await instead of error callbacks
                 callback(err)
@@ -12,8 +12,8 @@ const modelHelpers = {
         })
     },
     create: (body, callback) => {
-            let queryString = `INSERT INTO Restaurants(restaurant) VALUES('${body.restaurant}');`
-            db.query(queryString, (err, results) => {
+            const queryString = `INSERT INTO Restaurants(restaurant) VALUES(?);`
+            db.query(queryString, [body.restaurant], (err, results) => {
                 if (err){
                     callback(err)
                 } else {
@@ -22,7 +22,7 @@ const modelHelpers = {
             })
     },
     deleteAll: (callback) => {
-       let queryString = `TRUNCATE table Restaurants;`
+       const queryString = `TRUNCATE table Restaurants;`
         db.query(queryString, (err, results) => {
             if (err){
                 callback(err)
@@ -32,14 +32,24 @@ const modelHelpers = {
         })
     },
     deleteOne: (id, callback) => {
-        let queryString = `DELETE FROM Restaurants WHERE id = ${id};` // we want to delete one item from the database with this provided id
-        db.query(queryString, (err, results) => {
+        const queryString = `DELETE FROM Restaurants WHERE id=?;`
+        db.query(queryString, [id], (err, results) => {
             if (err){
                 callback(err)
             } else {
                 callback(null, results)
             }
         })
+    },
+    update: (id, payload, callback) => {
+        try {
+            const queryString = `UPDATE Restaurants set restaurant= ? WHERE id =?;`
+            db.query(queryString, [payload, id], (err, results) => {
+            })
+            callback(null, results)
+        } catch (error) {
+            callback(err)
+        }
     }
 };
 

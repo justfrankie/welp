@@ -35,7 +35,15 @@ const controllers = { // TODO: write unit tests for each path
             } 
             res.status(200).send(results)
         })
-   }
+   },
+   update: (req, res) => {
+    modelHelpers.update(req.params.id, req.body.payload, (err, results) => {
+        if (err) {
+            res.status(404).send(err);
+        } 
+        res.status(200).send(results)
+    })
+}
 }
 
 module.exports = controllers;
