@@ -1,34 +1,44 @@
 body {
   /* TODO: refractor and use better css syntax*/
   font-family: "Mulish", sans-serif;
-  background: rgb(243, 243, 243);
+  background: rgb(246 246 246);
   color: rgb(31, 31, 31);
   text-align: center;
   margin: auto;
 }
 
+#app {
+  width: 80%;
+  height: fit-content;
+  margin: 3rem auto;
+  padding: 1rem 0;
+  border-radius: 1rem;
+  background: white;
+  box-shadow: 0px 3px 14px 3px #dfdfdf;
+}
+
 .headerText {
-  margin-top: 10rem;
+  margin-top: 3rem;
 }
 
-.navBarTop {
+.navBarContainer {
   background: #e2e2e2;
-  left: 0;
-  top: 0;
-  right: 0;
   width: 100%;
-  position: absolute;
-  height: 25px;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
 }
 
-.navJustify {
-  width: 15%;
+.userNavigationWrapper {
+  width: fit-content;
   display: flex;
   margin-left: auto;
 }
 
 .navText {
-  margin-right: auto;
+  margin: 0 auto;
+  width: fit-content;
+  margin: 0 1rem;
 }
 
 .navText:hover {
@@ -48,12 +58,12 @@ body {
 }
 
 .inputBar {
-  border: none;
-  margin-top: 50px;
+  margin-top: 1rem;
   width: 200px;
   padding: 15px;
   font-family: "Mulish", sans-serif;
-  border-radius: 2px;
+  border-radius: 5px;
+  border: 1px solid #c8c8c8;
 }
 
 #addButton {
@@ -104,9 +114,24 @@ body {
   background-color: rgb(241, 232, 145);
 }
 
+#backToListButton {
+  padding: 15px 30px;
+  border: none;
+  font-family: "Mulish", sans-serif;
+  border-radius: 5px;
+  background-color: rgb(127 203 233);
+  margin: 1rem;
+}
+
+#backToListButton:hover {
+  cursor: pointer;
+  background-color: rgb(79, 146, 227);
+  color: white;
+}
+
 #randomButton:hover {
   cursor: pointer;
-  background-color: rgb(223, 168, 81);
+  background-color: rgb(234, 173, 81);
   color: white;
 }
 
@@ -125,13 +150,22 @@ body {
   font-weight: 600;
 }
 
-#choiceText {
-  font-weight: 600;
-  font-size: 20px;
-  padding-top: 30px;
+.restaurantChoiceWrapper {
+  margin: 3rem 0;
 }
 
-#copyrightsWrapper {
+#restaurantChoiceText {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+#restaurantChoiceResultText {
+  text-decoration: none;
+  font-size: 2rem;
+  margin: 1rem 0;
+}
+
+#footer {
   text-align: right;
   position: absolute;
   bottom: 5%;

@@ -1,152 +1,135 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import RestaurantsList from "./RestaurantsList.jsx";
 
-class App extends React.Component {
-  // TODO: convert to functional component
-  constructor(props) {
-    // TODO: use react hooks for state management
-    super(props);
-    this.state = {
-      displayChoice: false,
-      restaurants: [],
-      restaurant: "",
-    };
-    this.getDataFromDatabase = this.getDataFromDatabase.bind(this);
-    this.handleAddClick = this.handleAddClick.bind(this);
-    this.handleRandom = this.handleRandom.bind(this);
-    this.renderMainModule = this.renderMainModule.bind(this);
-  }
+const App = () => {
+  const [restaurantChoice, setRestaurantChoice] = useState(null);
+  const [restaurants, setRestaurants] = useState([]);
+  const [restaurant, setRestaurant] = useState(null);
 
-  componentDidMount() {
-    this.getDataFromDatabase();
-  }
+  useEffect(() => {
+    getRestaurants();
+  }, []);
 
-  getDataFromDatabase() {
-    // TODO rename better method name
+  const getRestaurants = () => {
     Axios.get("/api/all")
       .then((results) => {
-        this.setState({
-          restaurants: results.data,
-        });
+        setRestaurants(results.data);
       })
       .catch((err) => {
         console.error(err);
       });
-  }
+  };
 
-  handleChange(e) {
+  const handleInputChange = (e) => {
     e.preventDefault(); // preventing page from refreshing on form submission
 
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-  }
+    setRestaurant(e.target.value);
+  };
 
-  handleAddClick() {
+  const handleAddRestaurantClick = () => {
     // TODO rename better method name
-    if (this.state.restaurant.length < 1) {
+    if (restaurant.length < 1) {
       window.alert("Please enter at least one character.");
     } else {
-      let { restaurant } = this.state;
       Axios.post("/api/create", {
-        restaurant: restaurant,
+        restaurant: restaurant.toString(),
       })
-        .then(() => this.setState({ restaurant: "" })) // sets state back to blank to force re-render
+        .then(() => setRestaurant(null)) // might work with just null value
         .catch((err) => console.err(err));
     }
-  }
+  };
 
-  handleClearClick() {
+  const handleClearClick = () => {
     Axios.delete("/api/all")
-      .then(() => this.setState({ restaurant: "" })) // sets state back to blank to force re-render
+      .then(() => setRestaurant(null))
       .catch((err) => console.err(err));
-  }
+  };
 
-  handleRandom(e) {
+  const randomizeRestaurants = () => {
+    return restaurants[Math.floor(Math.random() * restaurants.length)]
+      .restaurant;
+  };
+
+  const handleRandom = (e) => {
     e.preventDefault();
-    this.setState({
-      displayChoice: !this.state.displayChoice,
-    });
-  }
+    setRestaurantChoice(randomizeRestaurants());
+  };
 
-  handleDeleteOne(id) {
-    Axios.delete(`/api/deleteOne/${id}`) // utilizing req.params
-      .then(() => this.getDataFromDatabase())
+  const handleDeleteOne = (paramId) => {
+    Axios.delete(`/api/deleteOne/${paramId}`) // utilizing req.params
+      .then(() => getRestaurants())
       .catch((err) => console.error(err));
-  }
+  };
 
-  renderMainModule() {
-    const randomizeRestaurants = (restaurants) => {
-      return restaurants[Math.floor(Math.random() * restaurants.length)]
-        .restaurant;
-    };
-    const renderViews = () => {
-      if (this.state.displayChoice) {
-        return (
-          <>
-            <div id="choiceText">Your choice is: </div>
-            <h1 style={{ color: "rgb(83 177 89)" }}>
-              {randomizeRestaurants(this.state.restaurants)}
-            </h1>
-          </>
-        );
-      } else if (!this.state.restaurants.length) {
-        return (
-          <>
-            <h3 style={{ padding: "25px 0" }}>
-              Add restaurants to get started!
-            </h3>
-          </>
-        );
-      } else {
-        return (
-          <RestaurantsList
-            restaurants={this.state.restaurants}
-            handleDeleteOne={this.handleDeleteOne.bind(this)}
-          />
-        );
-      }
-    };
+  const renderMainModule = () => {
+    if (restaurantChoice) {
+      return (
+        <>
+          <div className="restaurantChoiceWrapper">
+            <p id="restaurantChoiceText">Your choice is: </p>
+            <a
+              style={{ color: "rgb(83 177 89)" }}
+              href={`https://www.google.com/search?q=${restaurantChoice}+near+me`}
+              id="restaurantChoiceResultText"
+              target={"_blank"}
+            >
+              {restaurantChoice}
+            </a>
+          </div>
+          <button
+            onClick={() => setRestaurantChoice(null)}
+            id="backToListButton"
+          >
+            Back to list
+          </button>
+        </>
+      );
+    } else {
+      return (
+        <RestaurantsList
+          restaurants={restaurants}
+          handleDeleteOne={handleDeleteOne}
+        />
+      );
+    }
+  };
+
+  const renderEmptyMessage = () => {
     return (
+      <>
+        <h3 style={{ padding: "25px 0" }}>Add restaurants to get started!</h3>
+      </>
+    );
+  };
+
+  return (
+    <>
+      <h1 className="headerText">Welp, can't decide?</h1>
+      <h5>For those "idk, whatever you want to eat" moments.</h5>
       <div>
         <form>
           <input
             placeholder="Restaurant"
             name="restaurant"
-            onChange={this.handleChange.bind(this)}
+            onChange={(e) => handleInputChange(e)}
             className="inputBar"
           ></input>
-          <button onClick={this.handleAddClick.bind(this)} id="addButton">
+          <button onClick={handleAddRestaurantClick} id="addButton">
             Add
           </button>
-          <button onClick={this.handleClearClick.bind(this)} id="clearButton">
+          <button onClick={handleClearClick} id="clearButton">
             Clear
           </button>
-          {renderViews()}
-          <button onClick={(e) => this.handleRandom(e)} id="randomButton">
-            Go!
+          {renderMainModule()}
+          {restaurants.length < 1 ? renderEmptyMessage() : <></>}
+          <button onClick={(e) => handleRandom(e)} id="randomButton">
+            Pick for me!
           </button>
         </form>
       </div>
-    );
-  }
-
-  render() {
-    return (
-      <>
-        <div className="navBarTop">
-          <div className="navJustify">
-            <a className="navText">Home</a>
-            <a className="navText">Profile</a>
-          </div>
-        </div>
-        <h1 className="headerText">Welp, can't decide?</h1>
-        <h5>For those "idk, whatever you want to eat" moments.</h5>
-        {this.renderMainModule()}
-      </>
-    );
-  }
-}
+    </>
+  );
+};
 
 export default App;
