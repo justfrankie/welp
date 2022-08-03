@@ -1,6 +1,6 @@
 import React from "react";
 
-let List = (props) => {
+let RestaurantsList = (props) => {
   return (
     <div id="listDiv">
       {props.restaurants.map((item, key) => (
@@ -18,4 +18,4 @@ let List = (props) => {
   );
 };
 
-export default List;
+export default RestaurantsList;

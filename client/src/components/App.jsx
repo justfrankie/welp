@@ -1,6 +1,6 @@
 import React from "react";
 import Axios from "axios";
-import List from "./List.jsx";
+import RestaurantsList from "./RestaurantsList.jsx";
 
 class App extends React.Component {
   // TODO: convert to functional component
@@ -58,7 +58,6 @@ class App extends React.Component {
   }
 
   handleClearClick() {
-    let { restaurant } = this.state;
     Axios.delete("/api/all")
       .then(() => this.setState({ restaurant: "" })) // sets state back to blank to force re-render
       .catch((err) => console.err(err));
@@ -78,35 +77,23 @@ class App extends React.Component {
   }
 
   renderMainModule() {
+    const randomizeRestaurants = (restaurants) => {
+      return restaurants[Math.floor(Math.random() * restaurants.length)]
+        .restaurant;
+    };
     const renderViews = () => {
       if (this.state.displayChoice) {
         return (
           <>
             <div id="choiceText">Your choice is: </div>
             <h1 style={{ color: "rgb(83 177 89)" }}>
-              {
-                this.state.restaurants[
-                  Math.floor(Math.random() * this.state.restaurants.length)
-                ].restaurant
-              }
+              {randomizeRestaurants(this.state.restaurants)}
             </h1>
           </>
         );
       } else if (!this.state.restaurants.length) {
         return (
           <>
-            <input
-              placeholder="Restaurant"
-              name="restaurant"
-              onChange={this.handleChange.bind(this)}
-              className="inputBar"
-            ></input>
-            <button onClick={this.handleAddClick.bind(this)} id="addButton">
-              Add
-            </button>
-            <button onClick={this.handleClearClick.bind(this)} id="clearButton">
-              Clear
-            </button>
             <h3 style={{ padding: "25px 0" }}>
               Add restaurants to get started!
             </h3>
@@ -114,7 +101,7 @@ class App extends React.Component {
         );
       } else {
         return (
-          <List
+          <RestaurantsList
             restaurants={this.state.restaurants}
             handleDeleteOne={this.handleDeleteOne.bind(this)}
           />
