@@ -42,7 +42,7 @@ const App = () => {
 
   const handleClearClick = () => {
     Axios.delete("/api/all")
-      .then(() => setRestaurant(null))
+      .then(() => Axios.get("/"))
       .catch((err) => console.err(err));
   };
 
@@ -69,9 +69,9 @@ const App = () => {
           <div className="restaurantChoiceWrapper">
             <p id="restaurantChoiceText">Your choice is: </p>
             <a
-              style={{ color: "rgb(83 177 89)" }}
               href={`https://www.google.com/search?q=${restaurantChoice}+near+me`}
               id="restaurantChoiceResultText"
+              alt="Link to Google Search"
               target={"_blank"}
             >
               {restaurantChoice}
