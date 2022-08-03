@@ -98,7 +98,9 @@ const App = () => {
   const renderEmptyMessage = () => {
     return (
       <>
-        <h3 style={{ padding: "25px 0" }}>Add restaurants to get started!</h3>
+        <h3 style={{ marginBottom: "3rem" }}>
+          Add a restaurant to get started!
+        </h3>
       </>
     );
   };
@@ -107,7 +109,7 @@ const App = () => {
     <>
       <h1 className="headerText">Welp, can't decide?</h1>
       <h5>For those "idk, whatever you want to eat" moments.</h5>
-      <div>
+      <div className="formContainerWrapper">
         <form>
           <input
             placeholder="Restaurant"
