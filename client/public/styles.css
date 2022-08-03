@@ -1,148 +1,144 @@
 body {
-    /* TODO: refractor and use better css syntax*/
-    font-family: 'Mulish', sans-serif;
-    background: rgb(243, 243, 243);
-    color: rgb(31, 31, 31);
-    text-align: center;
-    margin: auto;
+  /* TODO: refractor and use better css syntax*/
+  font-family: "Mulish", sans-serif;
+  background: rgb(243, 243, 243);
+  color: rgb(31, 31, 31);
+  text-align: center;
+  margin: auto;
 }
 
 .headerText {
-    margin-top: 10rem;
+  margin-top: 10rem;
 }
 
 .navBarTop {
-    background: #e2e2e2;
-    left: 0;
-    top: 0;
-    right: 0;
-    width: 100%;
-    position: absolute;
-    height: 25px;
+  background: #e2e2e2;
+  left: 0;
+  top: 0;
+  right: 0;
+  width: 100%;
+  position: absolute;
+  height: 25px;
 }
 
 .navJustify {
-    width: 15%;
-    display: flex;
-    margin-left: auto;
+  width: 15%;
+  display: flex;
+  margin-left: auto;
 }
 
 .navText {
-    margin-right: auto;
+  margin-right: auto;
 }
 
 .navText:hover {
-    color: white;
-    cursor: pointer;
+  color: white;
+  cursor: pointer;
 }
 
 #profileWrapper {
-    text-decoration: none;
-    color: #561b7d;
-    margin: 0 auto;
+  text-decoration: none;
+  color: #561b7d;
+  margin: 0 auto;
 }
 
 #expressdocs:hover {
-    color: white;
-    cursor: pointer;
+  color: white;
+  cursor: pointer;
 }
 
-.inputBar{
-    border: none;
-    margin-top: 50px;
-    width: 200px;
-    padding: 15px;
-    font-family: 'Mulish', sans-serif;
-    border-radius: 2px;
+.inputBar {
+  border: none;
+  margin-top: 50px;
+  width: 200px;
+  padding: 15px;
+  font-family: "Mulish", sans-serif;
+  border-radius: 2px;
 }
 
-#addButton{
-    padding: 15px;
-    border: none;
-    font-family: 'Mulish', sans-serif;
-    margin-left: 10px;
-    border-radius: 5px;
-    background-color: rgb(137, 199, 141);
-    color: white;
+#addButton {
+  padding: 15px;
+  border: none;
+  font-family: "Mulish", sans-serif;
+  margin-left: 10px;
+  border-radius: 5px;
+  background-color: rgb(137, 199, 141);
+  color: white;
 }
 
 #addButton:hover {
-    cursor: pointer;
-    background-color: rgb(102, 160, 100);
-   
+  cursor: pointer;
+  background-color: rgb(102, 160, 100);
 }
 
-#clearButton{
-    padding: 15px;
-    margin-left: 10px;
-    border: none;
-    font-family: 'Mulish', sans-serif;
-    border-radius: 5px;
-    background-color: rgb(209, 93, 93);
-    color: white;
+#clearButton {
+  padding: 15px;
+  margin-left: 10px;
+  border: none;
+  font-family: "Mulish", sans-serif;
+  border-radius: 5px;
+  background-color: rgb(209, 93, 93);
+  color: white;
 }
 
-#clearButton:hover{
-    cursor: pointer;
-    background-color: rgb(184, 62, 62);
-    color: white;
+#clearButton:hover {
+  cursor: pointer;
+  background-color: rgb(184, 62, 62);
+  color: white;
 }
 
-
-#restaurantItems{
-    text-align: center;
-    list-style: none;
-    padding: 1%;
-    margin: auto;
-    font-size: 20px;
-    font-weight: 600;
+#restaurantItems {
+  text-align: center;
+  list-style: none;
+  padding: 1%;
+  margin: auto;
+  font-size: 20px;
+  font-weight: 600;
 }
 
-#randomButton{
-    padding: 15px 30px;
-    border: none;
-    font-family: 'Mulish', sans-serif;
-    border-radius: 5px;
-    background-color: rgb(241, 232, 145);
+#randomButton {
+  padding: 15px 30px;
+  border: none;
+  font-family: "Mulish", sans-serif;
+  border-radius: 5px;
+  background-color: rgb(241, 232, 145);
 }
 
 #randomButton:hover {
-    cursor: pointer;
-    background-color: rgb(223, 168, 81);
-    color: white;
+  cursor: pointer;
+  background-color: rgb(223, 168, 81);
+  color: white;
 }
-
 
 #listDiv {
-    padding: 25px 0;
+  padding: 25px 0;
 }
 
-.individual_container{
-    display: flex;
-    width: 300px;
-    margin: 1% auto;
+.individual_container {
+  display: flex;
+  width: 300px;
+  margin: 1% auto;
 }
 
-.cross_button:hover{
-    cursor: pointer;
-    font-weight: 600;
+.cross_button:hover {
+  cursor: pointer;
+  font-weight: 600;
 }
 
 #choiceText {
-    font-weight: 600;
-    font-size: 20px;
-    padding-top: 30px;
+  font-weight: 600;
+  font-size: 20px;
+  padding-top: 30px;
 }
 
 #copyrightsWrapper {
-    text-align: right;
-    position: absolute;
-    bottom: 5%;
-    width: 95%;
+  text-align: right;
+  position: absolute;
+  bottom: 5%;
+  width: 95%;
 }
 
 #redirectText {
-    text-decoration: none;
-    color: #4e94c5;
+  text-decoration: none;
+  color: #4e94c5;
 }
-
