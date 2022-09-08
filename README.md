@@ -13,4 +13,5 @@ run ```npm install``` in one terminal, and ```npm run build``` in another
 
 On success: you should be able to see the following message: "Successfully connected to Welp! on http://localhost:3333/"
 
-Navigate to your browser and enter the URL http://localhost:3333/
+Navigate to your browser and enter the URL http://localhost:3333
+note: your localhost port may change depending on specified port # in .env file
