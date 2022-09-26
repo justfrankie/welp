@@ -108,7 +108,7 @@ const App = () => {
   return (
     <>
       <h1 className="headerText">Welp, can't decide?</h1>
-      <h5>For those "idk, whatever you want to eat" moments.</h5>
+      <h4>For those "idk, whatever you want to eat" moments.</h4>
       <div className="formContainerWrapper">
         <form>
           <input
