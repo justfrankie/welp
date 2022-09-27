@@ -108,7 +108,7 @@ const App = () => {
   return (
     <>
       <h1 className="headerText">Welp, can't decide?</h1>
-      <h4>For those "idk, whatever you want to eat" moments.</h4>
+      <p className="subHeaderText">For those "idk, whatever you want to eat" moments.</p>
       <div className="formContainerWrapper">
         <form>
           <input
@@ -117,12 +117,15 @@ const App = () => {
             onChange={(e) => handleInputChange(e)}
             className="inputBar"
           ></input>
+          <div className="buttonContainer">
           <button onClick={handleAddRestaurantClick} id="addButton">
             Add
           </button>
           <button onClick={handleClearClick} id="clearButton">
             Clear
           </button>
+          </div>
+         
           {renderMainModule()}
           {restaurants.length < 1 ? renderEmptyMessage() : <></>}
           <button onClick={(e) => handleRandom(e)} id="randomButton">

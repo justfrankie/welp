@@ -21,8 +21,9 @@ body {
 }
 
 
+
 .formContainerWrapper {
-  width: fit-content;
+  width: 70%;
   padding: 2rem 2rem 3rem 2rem;
   margin: 0 auto;
   border-radius: 10px;
@@ -53,15 +54,32 @@ body {
   box-shadow: 0px 1px 5px 1px #dcdcdcd9;
 }
 
+@media only screen and (min-width: 600px) {
+  #footer {
+    text-align: right;
+    position: absolute;
+    bottom: 5%;
+    width: 95%;
+  }
+}
+
 @media only screen and (max-width: 600px) {
   #app {
-    width: 80%;
+    width: 100%;
     height: fit-content;
     margin: 5rem auto;
     padding: 1rem 0;
     border-radius: 5px;
     background: white;
     box-shadow: 0px 3px 14px 3px #dfdfdf;
+}
+
+#logoText {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0.5rem;
+  text-decoration: none;
+  color: rgb(31, 31, 31);
 }
 
   .navBarContainer {
@@ -71,6 +89,17 @@ body {
     align-items: center;
     box-shadow: 0px 1px 5px 1px #dcdcdcd9;
   }
+
+  .userNavigationWrapper {
+    width: fit-content;
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+}
+.subHeaderText {
+  font-size: 0.7rem;
+}
+
 }
 
 .userNavigationWrapper {
@@ -103,12 +132,16 @@ body {
 }
 
 .inputBar {
-  margin-top: 1rem;
+  margin: 1rem 0;
   width: 200px;
   padding: 15px;
   font-family: "Mulish", sans-serif;
   border-radius: 5px;
   border: 1px solid #c8c8c8;
+}
+
+.buttonContainer {
+
 }
 
 #addButton {
@@ -217,12 +250,7 @@ body {
   border-bottom: 1px solid rgb(209, 93, 93);
 }
 
-#footer {
-  text-align: right;
-  position: absolute;
-  bottom: 5%;
-  width: 95%;
-}
+
 
 #redirectText {
   text-decoration: none;
