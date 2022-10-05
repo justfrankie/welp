@@ -5,7 +5,7 @@ const Footer = () => (
     <a target="_blank" href="https://www.frankiehliu.com/" id="redirectText">
       Frankie Liu
     </a>
-    <p>{`last modified: 9/25/22`}</p>
+    <p>{`last modified: 10/04/22`}</p>
   </span>
 );
 

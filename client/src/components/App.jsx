@@ -118,10 +118,10 @@ const App = () => {
             className="inputBar"
           ></input>
           <div className="buttonContainer">
-          <button onClick={handleAddRestaurantClick} id="addButton">
+          <button onClick={handleAddRestaurantClick} id="addButton" type="submit">
             Add
           </button>
-          <button onClick={handleClearClick} id="clearButton">
+          <button onClick={handleClearClick} id="clearButton" type="button">
             Clear
           </button>
           </div>
