@@ -5,6 +5,8 @@ Welp! Can't decide :/
 Frustrated from your group of friends  couldn't decide on a place to eat? 
 Well, introducing Welp! for those moments where you let a random algorithm decide your meal.
 
+![Demo Image](https://s3.us-west-1.amazonaws.com/frankiehliu.com/Welp+1.0.png)
+
 To get started: clone down a version of this application using the top right clone/copy git clone button.
 
 once into Terminal, make sure you have npm and git accessible.
