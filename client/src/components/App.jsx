@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Axios from "axios";
+import axios from "axios";
 import RestaurantsList from "./RestaurantsList.jsx";
 
 const App = () => {
@@ -12,7 +12,7 @@ const App = () => {
   }, []);
 
   const getRestaurants = () => {
-    Axios.get("/api/all")
+    axios.get("/api/all")
       .then((results) => {
         setRestaurants(results.data);
       })
@@ -32,7 +32,7 @@ const App = () => {
     if (restaurant.length < 1) {
       window.alert("Please enter at least one character.");
     } else {
-      Axios.post("/api/create", {
+      axios.post("/api/create", {
         restaurant: restaurant.toString(),
       })
         .then(() => setRestaurant(null)) // might work with just null value
@@ -41,8 +41,8 @@ const App = () => {
   };
 
   const handleClearClick = () => {
-    Axios.delete("/api/all")
-      .then(() => Axios.get("/"))
+    axios.delete("/api/all")
+      .then(() => axios.get("/"))
       .catch((err) => console.err(err));
   };
 
@@ -51,13 +51,12 @@ const App = () => {
       .restaurant;
   };
 
-  const handleRandom = (e) => {
-    e.preventDefault();
+  const handleRandomClick = () => {
     setRestaurantChoice(randomizeRestaurants());
   };
 
   const handleDeleteOne = (paramId) => {
-    Axios.delete(`/api/deleteOne/${paramId}`) // utilizing req.params
+    axios.delete(`/api/deleteOne/${paramId}`) // utilizing req.params
       .then(() => getRestaurants())
       .catch((err) => console.error(err));
   };
@@ -128,7 +127,7 @@ const App = () => {
          
           {renderMainModule()}
           {restaurants.length < 1 ? renderEmptyMessage() : <></>}
-          <button onClick={(e) => handleRandom(e)} id="randomButton">
+          <button onClick={handleRandomClick} id="randomButton">
             Pick for me!
           </button>
         </form>
