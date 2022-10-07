@@ -14,7 +14,7 @@ const App = () => {
   const getRestaurants = () => {
     axios.get("/api/all")
       .then((results) => {
-        setRestaurants(results.data);
+        setRestaurants([...restaurants, results.data]);
       })
       .catch((err) => {
         console.error(err);
@@ -28,14 +28,13 @@ const App = () => {
   };
 
   const handleAddRestaurantClick = () => {
-    // TODO rename better method name
     if (restaurant.length < 1) {
       window.alert("Please enter at least one character.");
     } else {
       axios.post("/api/create", {
         restaurant: restaurant.toString(),
       })
-        .then(() => setRestaurant(null)) // might work with just null value
+        .then(() => setRestaurant(null))
         .catch((err) => console.err(err));
     }
   };
